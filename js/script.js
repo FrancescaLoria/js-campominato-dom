@@ -8,14 +8,14 @@
 const gridElement = document.querySelector(".grid");
 
 //VARIABILE GLOBALE ( così posso usarla in altre funzioni )
-const arrayBombs = [];
+let arrayBombs = [];
 
 let userScore = 0;
 
-function generateBombs() {
+function generateBombs(bombsRange) {
   // genero un ciclo while perchè effettivamente non so quante volte dovrò "ciclare" essendoci dei doppioni, possono essere poche le volte ma anche tante.
   while (arrayBombs.length < 16) {
-    let x = Math.floor(Math.random() * 100 + 1);
+    let x = Math.floor(Math.random() * bombsRange + 1);
     // ciclo for per stabilire se un determinato elemento è già presente dentro array
     let find = false;
     for (let i = 0; i < arrayBombs.length; i++) {
@@ -34,10 +34,9 @@ function generateBombs() {
 }
 
 function generateBoxes() {
-  // invoco la funzione scrivendola ()
-  generateBombs();
-
+  // le creo in modo che si svuotino quando clicco il bottone.
   gridElement.innerHTML = "";
+  arrayBombs = [];
   // mi sono agganciata alla select e al valore della select
   const difficultySelect = document.querySelector(".difficulty-select").value;
   console.log(difficultySelect);
@@ -55,6 +54,8 @@ function generateBoxes() {
     nubersOfBoxs = 49;
     boxClass = "hard";
   }
+
+  generateBombs(nubersOfBoxs);
 
   for (let i = 1; i <= nubersOfBoxs; i++) {
     const boxElement = document.createElement("div");
