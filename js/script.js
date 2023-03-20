@@ -7,7 +7,33 @@
 // CREO LA FUNZIONE PER GENERARE LE MIE BOX
 const gridElement = document.querySelector(".grid");
 
+function generateBombs() {
+  // creo array vuoto
+  const arrayBombs = [];
+  // genero un ciclo while perchè effettivamente non so quante volte dovrò "ciclare" essendoci dei doppioni, possono essere poche le volte ma anche tante.
+  while (arrayBombs.length < 16) {
+    let x = Math.floor(Math.random() * 100 + 1);
+    // ciclo for per stabilire se un determinato elemento è già presente dentro array
+    let find = false;
+    for (let i = 0; i < arrayBombs.length; i++) {
+      // se il numero random è uguale all'elemento dell'array allora il mio find diventa true
+      if (x === arrayBombs[i]) {
+        find = true;
+      }
+    }
+    // se l'elemnto è diverso allora find è uguale a false e si aggiunge alla lista di array
+    if (find === false) {
+      arrayBombs.push(x);
+    }
+  }
+
+  console.log(arrayBombs);
+}
+
 function generateBoxes() {
+  // invoco la funzione scrivendola ()
+  generateBombs();
+
   gridElement.innerHTML = "";
   // mi sono agganciata alla select e al valore della select
   const difficultySelect = document.querySelector(".difficulty-select").value;
