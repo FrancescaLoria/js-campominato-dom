@@ -10,6 +10,8 @@ const gridElement = document.querySelector(".grid");
 //VARIABILE GLOBALE ( così posso usarla in altre funzioni )
 const arrayBombs = [];
 
+let userScore = 0;
+
 function generateBombs() {
   // genero un ciclo while perchè effettivamente non so quante volte dovrò "ciclare" essendoci dei doppioni, possono essere poche le volte ma anche tante.
   while (arrayBombs.length < 16) {
@@ -77,6 +79,9 @@ function activeBox() {
     this.classList.add("red");
   } else {
     this.classList.add("box-active");
+    userScore++;
+    let userScoreElement = document.querySelector(".score");
+    userScoreElement.innerHTML = `IL TUO PUNTEGGIO: ${userScore}`;
   }
 }
 

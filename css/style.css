@@ -85,3 +85,9 @@ body {
 .red {
   background-color: red;
 }
+
+.score {
+  text-align: center;
+  color: lightskyblue;
+  margin-top: 20px;
+}
