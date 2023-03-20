@@ -7,9 +7,10 @@
 // CREO LA FUNZIONE PER GENERARE LE MIE BOX
 const gridElement = document.querySelector(".grid");
 
+//VARIABILE GLOBALE ( così posso usarla in altre funzioni )
+const arrayBombs = [];
+
 function generateBombs() {
-  // creo array vuoto
-  const arrayBombs = [];
   // genero un ciclo while perchè effettivamente non so quante volte dovrò "ciclare" essendoci dei doppioni, possono essere poche le volte ma anche tante.
   while (arrayBombs.length < 16) {
     let x = Math.floor(Math.random() * 100 + 1);
@@ -65,8 +66,18 @@ function generateBoxes() {
 }
 
 function activeBox() {
-  console.log(this.textContent);
-  this.classList.add("box-active");
+  let find = false;
+  for (let i = 0; i < arrayBombs.length; i++) {
+    if (arrayBombs[i] == this.textContent) {
+      find = true;
+    }
+  }
+
+  if (find) {
+    this.classList.add("red");
+  } else {
+    this.classList.add("box-active");
+  }
 }
 
 // RENDO ATTIVO IL BOTTONE AL CLICK

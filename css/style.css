@@ -81,3 +81,7 @@ body {
 .box-active {
   background-color: lightblue;
 }
+
+.red {
+  background-color: red;
+}
